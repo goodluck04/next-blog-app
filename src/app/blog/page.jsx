@@ -1,10 +1,8 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
-
-
 
 const Blog = () => {
   const [data, setData] = useState([]);
@@ -12,9 +10,13 @@ const Blog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
-          cache: "no-store",
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/posts`,
+          {
+            cache: "no-store",
+          },
+          { mode: "no-cors" }
+        );
 
         if (!res.ok) {
           throw new Error("Failed to fetch data");
@@ -33,7 +35,11 @@ const Blog = () => {
   return (
     <div className={styles.mainContainer}>
       {data.map((item) => (
-        <Link key={item._id} href={`/blog/${item._id}`} className={styles.container}>
+        <Link
+          key={item._id}
+          href={`/blog/${item._id}`}
+          className={styles.container}
+        >
           <div className={styles.imageContainer}>
             <Image
               alt=""
