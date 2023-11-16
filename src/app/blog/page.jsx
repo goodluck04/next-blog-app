@@ -4,13 +4,15 @@ import styles from "./page.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
+
+
 const Blog = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/posts", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
           cache: "no-store",
         });
 
