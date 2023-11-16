@@ -12,7 +12,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`/api/posts`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/posts`, {
           cache: "no-store",
         });
 
